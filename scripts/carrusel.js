@@ -1,6 +1,6 @@
 // ===== CONFIGURACIÓN =====
 const CLOUD_NAME_CARRUSEL = 'duwcgmivc';
-const TAG_CARRUSEL = 'mosaico'; // Usa la misma tag que tus imágenes
+const TAG_CARRUSEL = 'mosaico';
 const INTERVALO = 13000; // Cambiar imagen cada 13 segundos
 
 // ===== OBTENER IMÁGENES =====
@@ -38,7 +38,7 @@ function inicializarCarrusel(imagenes) {
         return;
     }
     
-    // Limitar a máximo 5 imágenes
+    // Limitar a máximo 10 imágenes
     const slides = imagenes.slice(0, 10);
     
     // Generar slides

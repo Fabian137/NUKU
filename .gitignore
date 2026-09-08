@@ -2,4 +2,6 @@ pages/ejem.html
 assets/images/NUKUlogo.png
 data/
 styles/copy.css
-scripts/mosaico.js
+scripts/template.js
+scripts/correo.js
+assets/images/

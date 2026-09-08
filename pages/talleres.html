@@ -7,6 +7,8 @@
     <link rel="icon" href="../assets/images/NUKUlogo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../styles/mosaico.css">
     <link rel="stylesheet" href="../styles/main.css">
+    <!-- CSS de SimpleLightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.3/dist/simple-lightbox.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
@@ -34,15 +36,27 @@
     </nav>
 
     <!-- Header -->
-    <header class="page-header" style="height: 80vh; margin: 0;">
-        <h1>Talleres NUKU</h1>
-        <p>Próximamente</p>
-    
-        <div class="container">
-            <!-- <iframe class="formss" src="https://calendar.google.com/calendar/embed?src=423127045%40pcpuma.acatlan.unam.mx&ctz=America%2FMexico_City" style="border: 0" frameborder="0" scrolling="no"></iframe> -->
-             <!-- Esto debería existir -->
+
+    <header class="page-header carrusel-header" id="headerCarrusel">
+        <!-- Contenedor del carrusel (fondo) -->
+        <div class="carrusel-fondo" id="carruselFondo">
+            <!-- Las imágenes se generan con JavaScript -->
+        </div>
+        
+        <!-- Contenido superpuesto (igual que antes) -->
+        <div class="header-content">
+            <div class="logo-image-container">
+                <img src="../assets/images/NUKUlogo.svg" alt="Logo NUKU" class="logo-img">
             </div>
-        </header>
+            <h1>NUKU</h1>
+            <p>Capítulo Estudiantil de la Sociedad Matemática Mexicana</p>
+            <div class="header-badge">FES Acatlán - UNAM</div>
+        </div>
+        
+        <!-- Indicadores (puntos) -->
+        <div class="carrusel-indicadores" id="carruselIndicadores"></div>
+    </header>
+
         <main class="container">
 
             <div id="calendario-container">
@@ -96,13 +110,25 @@
             </div>
         </main>
 
-        <section class="container">
+        <section class="container" style="margin-bottom: 2rem;">
             <div class="mosaico-container">
                 <h2 class="mosaico-titulo">Eventos y Talleres</h2>
                 <div class="mosaico-grid" id="mosaicoGrid">
                     <!-- Generado por JavaScript -->
                 </div>
             </div>
+                 <!-- ===== LIGHTBOX ===== -->
+                <div id="lightbox" class="lightbox" style="display: none;">
+                    <span class="lightbox-cerrar" id="lightboxCerrar">&times;</span>
+                    <div class="lightbox-contenido">
+                        <img id="lightboxImagen" src="" alt="Evento">
+                        <div class="lightbox-info">
+                            <h3 id="lightboxTitulo">Título del evento</h3>
+                            <p id="lightboxFecha">Fecha</p>
+                            <p id="lightboxDescripcion">Descripción</p>
+                        </div>
+                    </div>
+                </div>
         </section>
 
     <!-- Footer -->
@@ -165,12 +191,14 @@
     </div>
 </footer>
 
-<script src="../scripts/mosaico.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.9/p5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.9/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.3/dist/simple-lightbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.5.0/ical.min.js"></script>
 
-    <script src="../scripts/calendario.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.5.0/ical.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="../scripts/mosaico.js"></script>
+<script src="../scripts/calendario.js"></script>
+<script src="../scripts/carrusel.js"></script>
 </body>
 </html>

@@ -131,7 +131,7 @@ function generarMosaico(imagenes) {
 
 // ===== EJECUTAR =====
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('Cargando mosaico...');
+    // console.log('Cargando mosaico...');
     const imagenes = await obtenerImagenesCloudinary();
     generarMosaico(imagenes);
 });

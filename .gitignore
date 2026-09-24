@@ -3,5 +3,6 @@ assets/images/NUKUlogo.png
 data/
 styles/copy.css
 scripts/template.js
-scripts/correo.js
+scripts/correos.js
+scripts/carrusel-l.js
 assets/images/

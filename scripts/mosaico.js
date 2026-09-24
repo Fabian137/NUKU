@@ -18,11 +18,11 @@ async function obtenerImagenesCloudinary() {
 }
 
 // ===== LIGHTBOX =====
-function abrirLightbox(imagenUrl, titulo, fecha, descripcion) {
+function abrirLightbox(imagenUrl, titulo, descripcion) {
     const lightbox = document.getElementById('lightbox');
     const img = document.getElementById('lightboxImagen');
     const tituloEl = document.getElementById('lightboxTitulo');
-    const fechaEl = document.getElementById('lightboxFecha');
+    // const fechaEl = document.getElementById('lightboxFecha');
     const descEl = document.getElementById('lightboxDescripcion');
     
     if (!lightbox) {
@@ -33,7 +33,7 @@ function abrirLightbox(imagenUrl, titulo, fecha, descripcion) {
     img.src = imagenUrl;
     img.alt = titulo || 'Evento';
     tituloEl.textContent = titulo || 'Evento';
-    fechaEl.textContent = fecha || '';
+    // fechaEl.textContent = fecha || '';
     descEl.textContent = descripcion || '';
     
     lightbox.classList.add('visible');
@@ -105,18 +105,18 @@ function generarMosaico(imagenes) {
         const imageUrl = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${img.public_id}`;
         const nombre = img.public_id.split('/').pop() || `Evento ${index + 1}`;
         const titulo = nombre.replace(/[-_]/g, ' ').replace(/\.[^/.]+$/, '');
-        const fecha = img.created_at ? new Date(img.created_at).toLocaleDateString('es-ES', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        }) : '';
+        // const fecha = img.created_at ? new Date(img.created_at).toLocaleDateString('es-ES', {
+        //     year: 'numeric',
+        //     month: 'long',
+        //     day: 'numeric'
+        // }) : '';
         
         const item = document.createElement('div');
         item.className = 'mosaico-item';
         item.setAttribute('data-title', titulo);
         
         item.addEventListener('click', function() {
-            abrirLightbox(imageUrl, titulo, fecha, 'Evento del capítulo estudiantil NUKU');
+            abrirLightbox(imageUrl, titulo, 'Evento del capítulo estudiantil NUKU');
         });
         
         const imgElement = document.createElement('img');

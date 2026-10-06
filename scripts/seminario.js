@@ -1,5 +1,10 @@
 async function cargarSesionesSMAA() {
-  const url = 'https://res.cloudinary.com/duwcgmivc/raw/upload/v1786174351/smaa-sessions_q6myxw.json';
+  // URL base del JSON
+  const baseUrl = 'https://res.cloudinary.com/duwcgmivc/raw/upload/v1786174351/smaa-sessions_q6myxw.json';
+  
+  // timestamp para evitar caché del navegador
+  const url = baseUrl + '?t=' + new Date().getTime();
+  
   const tbody = document.querySelector('.sessions-table tbody');
   
   if (!tbody) {
@@ -14,13 +19,9 @@ async function cargarSesionesSMAA() {
     const data = await response.json();
     const sessions = data.sessions || [];
     
-    // 1. Generar tabla (igual que antes)
     renderTabla(tbody, sessions);
-    
-    // 2. Llenar bloque de próxima ponencia
     renderProximaPonencia(sessions);
     
-    // 3. Mostrar semestre
     const semesterElement = document.getElementById('semester-display');
     if (semesterElement && data.semester) {
       semesterElement.textContent = `Semestre ${data.semester}`;
@@ -70,11 +71,24 @@ function renderProximaPonencia(sessions) {
   const ponenteEl = document.getElementById('next-presenter');
   const descripcionEl = document.getElementById('next-description');
   const fechaEl = document.getElementById('next-date');
+  const cartelEl = document.getElementById('proxima-cartel');
 
   if (tituloEl) tituloEl.textContent = proxima.topic || 'Tema por definir';
   if (ponenteEl) ponenteEl.textContent = proxima.speaker || 'Ponente por confirmar';
   if (descripcionEl) descripcionEl.textContent = proxima.description || 'Descripción pendiente';
   if (fechaEl) fechaEl.textContent = proxima.displayDate || proxima.date || 'Fecha por definir';
+  if (cartelEl) {
+    if (proxima.poster) {
+      // Usar el campo version para invalidar caché
+      const version = proxima.version || 5;
+      const separador = proxima.poster.includes('?') ? '&' : '?';
+      cartelEl.src = `${proxima.poster}${separador}v=${version}`;
+      // cartelEl.style.display = 'block';
+    } else {
+      // Si no hay cartel, ocultar la imagen
+      cartelEl.style.display = 'none';
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', cargarSesionesSMAA);

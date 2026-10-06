@@ -55,8 +55,11 @@ function renderProximaPonencia(sessions) {
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0); // Normalizar a medianoche
   
+  const referencia = new Date(hoy);
+  referencia.setDate(referencia.getDate() - 1);
+
   const proximas = sessions
-    .filter(s => new Date(s.date) >= hoy)
+    .filter(s => new Date(s.date) >= referencia)
     .sort((a, b) => new Date(a.date) - new Date(b.date));
   
   // Si no hay futuras, usar la última pasada

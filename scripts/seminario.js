@@ -48,6 +48,11 @@ function renderTabla(tbody, sessions) {
   });
 }
 
+function parseFechaLocal(fechaStr) {
+  const [year, month, day] = fechaStr.split('-').map(Number);
+  return new Date(year, month - 1, day); // Mes es 0-indexado
+}
+
 // Función para llenar el bloque de la próxima ponencia
 function renderProximaPonencia(sessions) {
   if (!sessions || sessions.length === 0) return;
@@ -59,10 +64,12 @@ function renderProximaPonencia(sessions) {
   const referencia = new Date(hoy);
   referencia.setDate(referencia.getDate() - 1);
 
+  // const proximas = sessions
+  //   .filter(s => new Date(s.date) >= referencia)
+  //   .sort((a, b) => new Date(a.date) - new Date(b.date));
   const proximas = sessions
-    .filter(s => new Date(s.date) >= referencia)
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
-  
+  .filter(s => parseFechaLocal(s.date) >= referencia)
+  .sort((a, b) => parseFechaLocal(a.date) - parseFechaLocal(b.date));
   // Si no hay futuras, usar la última pasada
   const proxima = proximas[0] || sessions[sessions.length - 1];
   

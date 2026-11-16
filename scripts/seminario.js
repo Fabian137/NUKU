@@ -59,7 +59,7 @@ function renderProximaPonencia(sessions) {
   
   // Elegir la sesión: la más próxima (fecha futura más cercana)
   const hoy = new Date();
-  // hoy.setHours(0, 0, 0, 0); // Normalizar a medianoche
+  hoy.setHours(0, 0, 0, 0); // Normalizar a medianoche
   
   const referencia = new Date(hoy);
   referencia.setDate(referencia.getDate() - 1);
@@ -71,7 +71,7 @@ function renderProximaPonencia(sessions) {
   .filter(s => parseFechaLocal(s.date) >= referencia)
   .sort((a, b) => parseFechaLocal(a.date) - parseFechaLocal(b.date));
   // Si no hay futuras, usar la última pasada
-  const proxima = proximas[1] || sessions[sessions.length - 1];
+  const proxima = proximas[0] || sessions[sessions.length - 1];
   
   // Actualizar elementos del DOM
   const tituloEl = document.getElementById('next-title');
